@@ -1,7 +1,7 @@
 import { Button ,Input ,Label ,Table } from 'reactstrap';
 import React ,{ useState } from 'react';
 import { BACKEND_URL ,EMPTY_STRING } from '../utils/Constants';
-import axios from 'axios';
+import axios from './../config/axiosConfig';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
@@ -34,7 +34,7 @@ const History = () => {
     return (
         <div>
             <div className="container">
-                <h2>Historial de Acceso</h2>
+                <h2 className="page-title">Historial de Acceso</h2>
                 <div className="row">
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                         <div className="container">

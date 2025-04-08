@@ -1,7 +1,9 @@
 const Navbar = () => {
     return (
         <div className="navbar">
-            Navbar
+            <span>
+                QR access v1.0
+            </span>
         </div>
     );
 }

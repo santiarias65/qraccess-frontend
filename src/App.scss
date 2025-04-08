@@ -14,10 +14,30 @@ $gray: #c4ccde;
   background-color: $ligth;
   padding: 1rem 2rem;
   border-bottom: 1px solid $gray;
+
+  span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 10px;
+  }
 }
 
 .flex {
   display: flex;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -40,4 +60,19 @@ $gray: #c4ccde;
       }
     }
   }
+}
+
+.page-title {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.form-label-spaced {
+  margin-bottom: 4px;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.add-person {
+  width: 210px;
 }
