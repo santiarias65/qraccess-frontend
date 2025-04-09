@@ -25,19 +25,20 @@ const UserList = () => {
     });
 
     useEffect(() => {
-        const url = BACKEND_URL + "person/all-persons";
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(url);
-                setUsers(response.data);
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
-        };
-        fetchData();
+        fetchDataUsers();
         loadAreas();
         loadPrograms();
     }, []);
+
+    const fetchDataUsers = async () => {
+        const url = BACKEND_URL + "person/all-persons";
+        try {
+            const response = await axios.get(url);
+            setUsers(response.data);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+        }
+    };
 
     const loadAreas = async () => {
         const url = BACKEND_URL + "university/areas";
@@ -62,29 +63,35 @@ const UserList = () => {
     const handleAddUser = async () => {
         setLoading(true);
         const url = BACKEND_URL + "person";
+
         try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newUser),
-            });
+            await axios.post(url, newUser);
 
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.error);
-            }
             setAlert({ message: "Usuario creado exitosamente!", type: "success", visible: true });
-
-
+            setNewUser({
+                id: '',
+                name: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                area: {
+                    id: '',
+                },
+                program: {
+                    id: '0',
+                }
+            });
         } catch (error) {
-            setAlert({ message: "Error al crear el usuario: " + error.message, type: "danger", visible: true });
+            const message = error.response?.data?.error || "Error desconocido";
+            setAlert({ message: "Error al crear el usuario: " + message, type: "danger", visible: true });
+
         } finally {
             setLoading(false);
+            fetchDataUsers();
             setTimeout(() => setAlert({ message: "", type: "", visible: false }), 3000);
         }
     };
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
