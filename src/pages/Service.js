@@ -121,8 +121,8 @@ const Service = () => {
                                     <td>{user.lastName}</td>
                                     <td>{user.email}</td>
                                     <td>{user.phone}</td>
-                                    <td>{user.area.name}</td>
-                                    <td>{user.program.name}</td>
+                                    <td>{user.area?.name}</td>
+                                    <td>{user.program?.name}</td>
                                 </tr>
                             )}
                             </tbody>
